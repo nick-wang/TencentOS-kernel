@@ -545,6 +545,10 @@ static void __init kvm_smp_prepare_boot_cpu(void)
 	kvm_guest_cpu_init();
 	native_smp_prepare_boot_cpu();
 	kvm_spinlock_init();
+	
+	if (kvm_para_has_hint(KVM_HINTS_REALTIME) ||
+		!kvm_para_has_feature(KVM_FEATURE_PV_UNHALT))
+	static_branch_disable(&virt_spin_lock_key);
 }
 
 static void kvm_guest_cpu_offline(void)
