@@ -263,6 +263,10 @@ struct mem_cgroup {
 	struct list_head event_list;
 	spinlock_t event_list_lock;
 
+	/* attach a blkio with memcg for cgroup v1 */
+	struct cgroup_subsys_state *bind_blkio;
+	char *bind_blkio_path;
+
 	struct mem_cgroup_per_node *nodeinfo[0];
 	/* WARNING: nodeinfo must be the last member here */
 };
